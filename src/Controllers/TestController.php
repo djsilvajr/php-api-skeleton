@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Controllers;
+use App\Service\TestService;
 
 
 class TestController {
@@ -8,7 +9,12 @@ class TestController {
     private $var;
 
     public function get(){
-        return 'teste';
+
+        $service = new TestService();
+        $response = $service->hello();
+        http_response_code($response['statusCode']);
+        return $response;
+
     }
 }
 
